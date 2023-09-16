@@ -31,11 +31,11 @@ class MustafaInstance:
     
     @property
     def host(self):
-        return self._host
+        return self._device.ip
     
     @property
     def port(self):
-        return self._port
+        return self._device.port
     
     @property
     def unique_id(self):
