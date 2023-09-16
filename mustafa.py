@@ -1,6 +1,6 @@
 # define a platform for switch in home assistant
 import asyncio
-from ip_switch import IpSwitch
+from .ip_switch import IpSwitch
 import logging
 
 LOGGER = logging.getLogger(__name__)
