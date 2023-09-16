@@ -11,7 +11,7 @@ from pprint import pformat
 # Import the device class from the component that you want to support
 import homeassistant.helpers.config_validation as cv
 from homeassistant.components.switch import (PLATFORM_SCHEMA, SwitchEntity)
-from homeassistant.const import CONF_NAME, CONF_IP_ADDRESS, CONF_MAC, CONF_UNIQUE_ID
+from homeassistant.const import CONF_NAME, CONF_IP_ADDRESS, CONF_PORT, CONF_UNIQUE_ID
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType, DiscoveryInfoType
@@ -22,7 +22,7 @@ _LOGGER = logging.getLogger("godox")
 PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
     vol.Optional(CONF_NAME): cv.string,
     vol.Required(CONF_IP_ADDRESS): cv.string,
-    vol.Required(CONF_MAC): cv.string,
+    vol.Required(CONF_PORT): cv.string,
     vol.Required(CONF_UNIQUE_ID): cv.string,
 })
 
@@ -40,7 +40,7 @@ def setup_platform(
     switch = {
         "name": config[CONF_NAME],
         "ip": config[CONF_IP_ADDRESS],
-        "mac": config[CONF_MAC],
+        "port": config[CONF_PORT],
         "unique_id": config[CONF_UNIQUE_ID]
     }
     
@@ -52,7 +52,7 @@ class MustafaSwitch(SwitchEntity):
     def __init__(self, switch) -> None:
         """Initialize an MustafaSwitch."""
         _LOGGER.info(pformat(switch))
-        self._switch = MustafaInstance(switch["ip"],switch["mac"],switch["unique_id"])
+        self._switch = MustafaInstance(switch["ip"],switch["port"],switch["unique_id"])
         self._name = switch["name"]
         self._state = None
 
