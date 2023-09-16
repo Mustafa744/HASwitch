@@ -14,10 +14,10 @@ async def discover():
 
             
 class MustafaInstance:
-    def __init__(self,host:str,port:str,unique_id:str) -> None:
+    def __init__(self,host,port :str,unique_id:str) -> None:
         self._host = host
         self._port = port
-        self._device = IpSwitch(self.host,self.port)
+        self._device = IpSwitch(self._host,self._port)
         self._is_on = None
         self._connected = None
         self._unique_id = unique_id
