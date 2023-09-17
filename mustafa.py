@@ -48,11 +48,13 @@ class MustafaInstance:
     
     async def turn_on(self):
         await self._device.send_data("on")
-        self._state = STATE_ON
+        self._state = True
+        return self._state
         
     async def turn_off(self):
         await self._device.send_data("off")
-        self._state = STATE_OFF
+        self._state = False
+        return self._state
         
     async def toggle(self):
         self._state = not self._state

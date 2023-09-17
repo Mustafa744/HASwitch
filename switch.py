@@ -71,15 +71,15 @@ class MustafaSwitch(SwitchEntity):
 
     async def async_turn_on(self, **kwargs: Any) -> None:
         """Instruct the switch to turn on."""
-        await self._switch.turn_on()
+        self._state = await self._switch.turn_on()
 
     async def async_turn_off(self, **kwargs: Any) -> None:
         """Instruct the switch to turn off."""
-        await self._switch.turn_off()
+        self._state = await self._switch.turn_off()
     
     async def async_toggle(self, **kwargs):
         """Instruct the switch to toggle."""
-        await self._switch.toggle()
+        self._state = await self._switch.toggle()
 
     def update(self) -> None:
         """Fetch new state data for this switch.
