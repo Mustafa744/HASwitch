@@ -77,8 +77,8 @@ class MustafaSwitch(SwitchEntity):
         """Instruct the switch to turn off."""
         await self._switch.turn_off()
 
-    async def update(self) -> None:
+    def update(self) -> None:
         """Fetch new state data for this switch.
         This is the only method that should fetch new data for Home Assistant.
         """
-        self._state = await self._switch.update_state()
+        self._state = self._switch.is_on

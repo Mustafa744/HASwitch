@@ -49,17 +49,11 @@ class MustafaInstance:
     async def turn_on(self):
         await self._device.send_data("on")
         self._state = STATE_ON
-        self.is_on = True
         
     async def turn_off(self):
         await self._device.send_data("off")
         self._state = STATE_OFF
-        self.is_on = True
-    
-    async def update_state(self):
-        self._state = await self._device.is_on()
-        return self._state
-    
+        
     async def connect(self):
         # await self._device.connect()
         self._connected = True
