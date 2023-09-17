@@ -54,7 +54,7 @@ class MustafaInstance:
         self._is_on = False
         
     async def connect(self):
-        await self._device.connect()
+        self._device.connect()
         self._connected = True
         
     async def disconnect(self):
