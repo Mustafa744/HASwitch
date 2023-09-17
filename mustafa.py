@@ -46,15 +46,15 @@ class MustafaInstance:
         return self._device.is_on
     
     async def turn_on(self):
-        await self._send("on")
+        await self._device.send("on")
         self._is_on = True
         
     async def turn_off(self):
-        await self._send("off")
+        await self._device.send("off")
         self._is_on = False
         
     async def connect(self):
-        await self._device.connect()
+        # await self._device.connect()
         self._connected = True
         
     async def disconnect(self):
