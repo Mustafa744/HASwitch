@@ -43,7 +43,7 @@ class MustafaInstance:
         return self._unique_id
     
     @property
-    async def is_on(self):
+    def is_on(self):
         return self._state
     
     async def turn_on(self):
