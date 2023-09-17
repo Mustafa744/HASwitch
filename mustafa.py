@@ -4,7 +4,7 @@ from .ip_switch import IpSwitch
 import logging
 
 LOGGER = logging.getLogger(__name__)
-GATEWAY = "localip_address"
+GATEWAY = "192.168.1.6"
 GATEWAY_PORT = "8080"
 async def discover():
     """Discover devices."""

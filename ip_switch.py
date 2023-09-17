@@ -40,6 +40,11 @@ class IpSwitch:
             return res.json()['is_on']
         else:
             return False
+    # def turn_on(self):
+    #     return self.send_data('on')
+    
+    # def turn_off(self):
+    #     return self.send_data('off')
     
     @staticmethod
     def discover_devices(ip:str,port:str)->dict:
