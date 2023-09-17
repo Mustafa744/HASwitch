@@ -44,7 +44,7 @@ class MustafaInstance:
     
     @property
     async def is_on(self):
-        return await self._state
+        return self._state
     
     async def turn_on(self):
         await self._device.send_data("on")
