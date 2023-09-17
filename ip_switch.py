@@ -7,7 +7,7 @@ class IpSwitch:
         self._is_connected = False
         self.hass = HomeAssistant
         
-    async def connect_handler(self):
+    async def connect(self):
         res = await requests.get('http://'+self.ip+':'+self.port+'/connect')
         if res.status_code == 200:
             self._is_connected = True
