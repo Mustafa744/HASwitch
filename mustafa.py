@@ -4,7 +4,7 @@ from .ip_switch import IpSwitch
 import logging
 
 LOGGER = logging.getLogger(__name__)
-GATEWAY = "localhost"
+GATEWAY = "localip_address"
 GATEWAY_PORT = "8080"
 async def discover():
     """Discover devices."""
@@ -14,10 +14,10 @@ async def discover():
 
             
 class MustafaInstance:
-    def __init__(self,host,port :str,unique_id:str) -> None:
-        self._host = host
+    def __init__(self,ip_address,port :str,unique_id:str) -> None:
+        self._ip_address = ip_address
         self._port = port
-        self._device = IpSwitch(self._host,self._port)
+        self._device = IpSwitch(self._ip_address,self._port)
         self._is_on = None
         self._connected = None
         self._unique_id = unique_id
@@ -30,8 +30,8 @@ class MustafaInstance:
         pass
     
     @property
-    def host(self):
-        return self._host
+    def ip_address(self):
+        return self._ip_address
     
     @property
     def port(self):

@@ -39,7 +39,7 @@ def setup_platform(
     
     switch = {
         "name": config[CONF_NAME],
-        "host": config[CONF_IP_ADDRESS],
+        "ip_address": config[CONF_IP_ADDRESS],
         "port": config[CONF_PORT],
         "unique_id": config[CONF_UNIQUE_ID]
     }
@@ -52,7 +52,7 @@ class MustafaSwitch(SwitchEntity):
     def __init__(self, switch) -> None:
         """Initialize an MustafaSwitch."""
         _LOGGER.info(pformat(switch))
-        self._switch = MustafaInstance(switch["host"],switch["port"],switch["unique_id"])
+        self._switch = MustafaInstance(switch["ip_address"],switch["port"],switch["unique_id"])
         self._name = switch["name"]
         self._state = None
 
@@ -65,8 +65,8 @@ class MustafaSwitch(SwitchEntity):
         return self._switch._unique_id
     
     # @property
-    # def host(self):
-    #     return self._switch.host
+    # def ip_address(self):
+    #     return self._switch.ip_address
     
     # @property
     # def port(self):
