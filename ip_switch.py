@@ -30,7 +30,7 @@ class IpSwitch:
     def is_connected(self):
         return self._is_connected 
     
-    def send_data(self, data):
+    async def send_data(self, data):
         res = requests.get('http://'+self.ip+':'+self.port+f'/{data}')
         if res.status_code == 200:
             return True
