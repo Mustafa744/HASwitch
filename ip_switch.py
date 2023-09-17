@@ -1,11 +1,13 @@
 import requests
+from homeassistant.core import HomeAssistant
 class IpSwitch:
     def __init__(self, ip, port):
         self.ip = ip
         self.port = port
         self._is_connected = False
+        self.hass = HomeAssistant
         
-    def connect(self):
+    def connect_handler(self):
         res = requests.get('http://'+self.ip+':'+self.port+'/connect')
         if res.status_code == 200:
             self._is_connected = True
@@ -13,6 +15,8 @@ class IpSwitch:
         else:
             self._is_connected = False
             return False
+    async def connect(self):
+        return await self.hass.async_add_executor_job(self.connect_handler)
     
     def disconnect(self):
         res = requests.get('http://'+self.ip+':'+self.port+'/disconnect')
