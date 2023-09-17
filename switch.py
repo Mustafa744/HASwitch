@@ -54,7 +54,7 @@ class MustafaSwitch(SwitchEntity):
         _LOGGER.info(pformat(switch))
         self._switch = MustafaInstance(switch["ip_address"],switch["port"],switch["unique_id"])
         self._name = switch["name"]
-        self._state = None
+        self._state = False
 
     @property
     def name(self) -> str:
@@ -76,6 +76,10 @@ class MustafaSwitch(SwitchEntity):
     async def async_turn_off(self, **kwargs: Any) -> None:
         """Instruct the switch to turn off."""
         await self._switch.turn_off()
+    
+    async def async_toggle(self, **kwargs):
+        """Instruct the switch to toggle."""
+        await self._switch.toggle()
 
     def update(self) -> None:
         """Fetch new state data for this switch.

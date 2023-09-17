@@ -19,7 +19,7 @@ class MustafaInstance:
         self._ip_address = ip_address
         self._port = port
         self._device = IpSwitch(self._ip_address,self._port)
-        self._state = None
+        self._state = False
         self._connected = None
         self._unique_id = unique_id
         
@@ -53,6 +53,11 @@ class MustafaInstance:
     async def turn_off(self):
         await self._device.send_data("off")
         self._state = STATE_OFF
+        
+    async def toggle(self):
+        self._state = not self._state
+        # do something to toggle the switch
+        return self._state
         
     async def connect(self):
         # await self._device.connect()
