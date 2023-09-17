@@ -77,16 +77,16 @@ class MustafaSwitch(SwitchEntity):
         """Return true if switch is on."""
         return self._state
 
-    async def async_turn_on(self, **kwargs: Any) -> None:
+    async def turn_on(self, **kwargs: Any) -> None:
         """Instruct the switch to turn on."""
         await self._switch.turn_on()
 
-    async def async_turn_off(self, **kwargs: Any) -> None:
+    async def turn_off(self, **kwargs: Any) -> None:
         """Instruct the switch to turn off."""
         await self._switch.turn_off()
 
-    def update(self) -> None:
+    async def update(self) -> None:
         """Fetch new state data for this switch.
         This is the only method that should fetch new data for Home Assistant.
         """
-        self._state = self._switch.is_on
+        self._state = await self._switch.is_on
