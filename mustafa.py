@@ -1,5 +1,6 @@
 # define a platform for switch in home assistant
 import asyncio
+from homeassistant.const import STATE_ON, STATE_OFF
 from .ip_switch import IpSwitch
 import logging
 
@@ -18,7 +19,7 @@ class MustafaInstance:
         self._ip_address = ip_address
         self._port = port
         self._device = IpSwitch(self._ip_address,self._port)
-        self._is_on = None
+        self._state = None
         self._connected = None
         self._unique_id = unique_id
         
@@ -43,16 +44,20 @@ class MustafaInstance:
     
     @property
     async def is_on(self):
-        return await self._device.is_on()
+        return await self._state
     
     async def turn_on(self):
         await self._device.send_data("on")
-        self._is_on = True
+        self._state = STATE_ON
         
     async def turn_off(self):
         await self._device.send_data("off")
-        self._is_on = False
-        
+        self._state = STATE_OFF
+    
+    async def update_state(self):
+        self._state = await self._device.is_on()
+        return self._state
+    
     async def connect(self):
         # await self._device.connect()
         self._connected = True

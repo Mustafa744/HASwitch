@@ -11,7 +11,7 @@ from pprint import pformat
 # Import the device class from the component that you want to support
 import homeassistant.helpers.config_validation as cv
 from homeassistant.components.switch import (PLATFORM_SCHEMA, SwitchEntity)
-from homeassistant.const import CONF_NAME, CONF_IP_ADDRESS, CONF_PORT, CONF_UNIQUE_ID
+from homeassistant.const import CONF_NAME, CONF_IP_ADDRESS, CONF_PORT, CONF_UNIQUE_ID, STATE_ON
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType, DiscoveryInfoType
@@ -63,14 +63,6 @@ class MustafaSwitch(SwitchEntity):
     @property
     def unique_id(self):
         return self._switch._unique_id
-    
-    # @property
-    # def ip_address(self):
-    #     return self._switch.ip_address
-    
-    # @property
-    # def port(self):
-    #     return self._switch.port
 
     @property
     def is_on(self) -> bool | None:
@@ -89,4 +81,4 @@ class MustafaSwitch(SwitchEntity):
         """Fetch new state data for this switch.
         This is the only method that should fetch new data for Home Assistant.
         """
-        self._state = await self._switch.is_on
+        self._state = await self._switch.update_state()
