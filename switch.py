@@ -64,13 +64,13 @@ class MustafaSwitch(SwitchEntity):
     def unique_id(self):
         return self._switch._unique_id
     
-    @property
-    def host(self):
-        return self._switch._host
+    # @property
+    # def host(self):
+    #     return self._switch.host
     
-    @property
-    def port(self):
-        return self._switch._port
+    # @property
+    # def port(self):
+    #     return self._switch.port
 
     @property
     def is_on(self) -> bool | None:
